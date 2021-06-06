@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\WeddingEventController;
+use App\Models\InvitedGuest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('events/guests/{event}', [InvitedGuest::class, 'index'])->middleware('auth:sanctum')->name('event-guests');
+Route::get('events/guests/rsvp/{slug}', [InvitedGuest::class, 'index'])->middleware('auth:sanctum')->name('event-guests-rsvp');
+Route::resource('events', WeddingEventController::class)->middleware('auth:sanctum');

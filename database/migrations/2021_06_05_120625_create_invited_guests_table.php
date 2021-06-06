@@ -18,11 +18,16 @@ class CreateInvitedGuestsTable extends Migration
             $table->uuid('slug')->unique();
             $table->string('name');
             $table->string('number_of_guest');
-            $table->boolean('family');
-            $table->string('email');
-            $table->string('phone');
+            $table->boolean('reserved_for')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->boolean('room_needed')->default(false);
             $table->string('barcode');
+            $table->string('comment')->nullable();
+            $table->boolean('attending')->default(true);
+            $table->foreignId('wedding_event_id')->constrained('wedding_events');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
