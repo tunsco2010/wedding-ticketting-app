@@ -1,6 +1,7 @@
 **`Composer install` <br/>
 `npm install` <br/>
 `npm run dev` <br/>
-`set your database` <br/>
-`php artisan migrate `<br/>
+`create your database ` <br/>
+`Udate .env file to reflect your newly created database ` <br/>
+`php artisan migrate --seed `<br/>
 `php artisan serve `<br/>**

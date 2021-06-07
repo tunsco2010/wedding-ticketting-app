@@ -25,6 +25,12 @@ class WeddingEventController extends Controller
 
     public function store(CreateWeddingEventRequest  $request)
     {
+        $request->validate([
+            'banner' => 'required|mimes:jpg,png,',
+        ]);
+
+        $fileName = time().'.'.$request->file->extension();
+        $request->file->move(public_path('uploads'), $fileName);
         $wedding_event = WeddingEvent::create([
             'name' => $request->input('name'),
             'date' => $request->input('date'),
@@ -33,7 +39,7 @@ class WeddingEventController extends Controller
             'second_contact_person' => $request->input('second_contact_person'),
             'event_center' => $request->input('event_center'),
             'seating_arrangement' => $request->input('seating_arrangement'),
-            'banner' => $request->input('banner'),
+            'banner' => $fileName,
             'max_guest' => $request->input('max_guest'),
         ]);
         return redirect()->back();
@@ -43,7 +49,6 @@ class WeddingEventController extends Controller
     public function show(WeddingEvent $weddingEvent)
     {
         $guests = InvitedGuest::where('wedding_event_id', $weddingEvent->id)->paginate(100)->toArray();
-        dd($guests, $weddingEvent);
         return view('wedding-event.show', compact('weddingEvent', 'guests'));
     }
 
@@ -56,7 +61,7 @@ class WeddingEventController extends Controller
 
     public function update(Request $request, WeddingEvent $weddingEvent)
     {
-        //
+
     }
 
 

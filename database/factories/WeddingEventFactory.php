@@ -22,7 +22,14 @@ class WeddingEventFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'slug' => WeddingEvent::generateSlug(),
+            'name' => 'Michelle & David',
+            'date' => '24-07-2021',
+            'address' => 'Oritamefa Baptist Church, Queen Elizabeth II Road, Total Garden, Ibadan, Nigeria',
+            'first_contact_person' => 'Femi',
+            'second_contact_person' => 'Tunde',
+            'event_center' => 'Emeritus Professor Theophilus Oladipo Ogunlesi Hall, Ibadan, Nigeria.',
+            'seating_arrangement' => 'Round Table', 'banner' => null, 'max_guest'=> 600
         ];
     }
 }

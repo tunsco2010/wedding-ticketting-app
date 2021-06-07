@@ -8,14 +8,14 @@ class CreateInvitedGuestsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * name, number_of_guest reserved_for email phone room_needed comment
      * @return void
      */
     public function up()
     {
         Schema::create('invited_guests', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('slug')->unique();
+            $table->bigIncrements('id');
+            $table->string('slug')->unique();
             $table->string('name');
             $table->string('number_of_guest');
             $table->boolean('reserved_for')->nullable();

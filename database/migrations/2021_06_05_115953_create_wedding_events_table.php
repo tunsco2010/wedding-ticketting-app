@@ -14,7 +14,8 @@ class CreateWeddingEventsTable extends Migration
     public function up()
     {
         Schema::create('wedding_events', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('slug')->unique();
             $table->string('name');
             $table->date('date');
             $table->string('address');

@@ -42,6 +42,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'ticket' => [
+            'driver' => 'local',
+            'root' => public_path('/ticket'),
+            'url' => env('APP_URL').'/ticket',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
