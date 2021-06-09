@@ -58,7 +58,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container"><a href="#"><svg class="heart" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
                         </svg></a>
-                    <h1 class="h2"><a class="pl-4 navbar-brand" href="#">Wonderful Wedding</a></h1>
+                    <h1 class="h2"><a class="pl-4 navbar-brand" href="#">{{ $event->name }}</a></h1>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ww-navbarNav" aria-controls="ww-navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse text-uppercase" id="ww-navbarNav">
                         <ul class="navbar-nav ml-auto">
@@ -152,15 +152,15 @@
                                     <div class="col-md-6 pb-3">
                                         <div class="form-group">
                                             <label for="phone-input">Phone*</label>
-                                            <input class="form-control" id="phone-input" type="phone" name="phone" required="required"/>
+                                            <input class="form-control" id="phone-input" type="tel" name="phone" required="required"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col md-6 pb-3">
                                         <div class="form-group">
-                                            <label for="guest-input">Number of Guests</label>
-                                            <select class="form-control" id="guest-input" name="guest">
+                                            <label for="number_of_guest">Number of Guests</label>
+                                            <select class="form-control" id="number_of_guest" name="number_of_guest">
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -171,8 +171,8 @@
                                     </div>
                                     <div class="col md-6 pb-3">
                                         <div class="form-group">
-                                            <label for="guest-input">Reserved For</label>
-                                            <select class="form-control" id="guest-input" name="guest">
+                                            <label for="reserved_for">Reserved For</label>
+                                            <select class="form-control" id="reserved_for" name="reserved_for">
                                                 <option value="single">Single</option>
                                                 <option value="couple">Couple</option>
                                                 <option value="family">Family</option>
@@ -184,7 +184,7 @@
                                     <div class="col-md-6 pb-3">
                                         <div class="form-group">
                                             <label for="events-input">I am Attending</label>
-                                            <select class="form-control" id="events-input" name="events">
+                                            <select class="form-control" id="events-input" name="attending">
                                                 <option value="all-event">All Events</option>
                                                 <option value="wedding-ceremony">Wedding ceremony</option>
                                                 <option value="reception-party">Reception Party</option>
@@ -193,10 +193,10 @@
                                     </div>
                                     <div class="col-md-6 pb-3">
                                         <div class="form-group">
-                                            <label for="events-input">Room Needed?</label>
-                                            <select class="form-control" id="events-input" name="events">
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
+                                            <label for="room_needed">Room Needed?</label>
+                                            <select class="form-control" id="room_needed" name="room_needed">
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
                                             </select>
                                         </div>
                                     </div>

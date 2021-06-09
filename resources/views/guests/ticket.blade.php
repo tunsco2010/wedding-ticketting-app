@@ -23,7 +23,8 @@
 <div style="width:100%; margin: 10px auto;">
     <div style="border-radius: 8px; padding: 50px; width: 800px; border-style: solid; border-color: gold; align-content: center; position: relative">
         <img height="400" src="{{ asset('asset/images/invitation_card.jpg') }}" alt="invitation" />
-        <img height="400" src="{{ url('ticket/tunde.svg') }}" style="margin-top: 0;" alt="barcode">
+{{--        {!! $guest->barcode !!}--}}
+        <img height="400" src="{{ $link }}" style="margin-top: 0;" alt="barcode">
         <h4 style="text-align: center">Access Barcode</h4>
     </div>
 </div>
