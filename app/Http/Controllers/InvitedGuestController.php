@@ -92,6 +92,11 @@ class InvitedGuestController extends Controller
         //
     }
 
+    public function ticket()
+    {
+        return view('guests.ticket');
+    }
+
     private static function generateTicketPDF($guest)
     {
         $svg = (new Writer(
