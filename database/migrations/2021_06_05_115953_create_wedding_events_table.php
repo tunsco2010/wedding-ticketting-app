@@ -19,6 +19,10 @@ class CreateWeddingEventsTable extends Migration
             $table->string('name');
             $table->date('date');
             $table->string('address');
+            $table->string('groom');
+            $table->string('start_time');
+            $table->string('end_time');
+            $table->string('bride');
             $table->string('first_contact_person');
             $table->string('second_contact_person')->nullable();
             $table->string('event_center')->nullable();

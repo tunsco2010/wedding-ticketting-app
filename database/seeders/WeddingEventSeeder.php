@@ -17,6 +17,10 @@ class WeddingEventSeeder extends Seeder
        WeddingEvent::create([
            'slug' => WeddingEvent::generateSlug(),
            'name' => 'Michelle & David',
+           'bride' => 'Michelle',
+           'groom' => 'David',
+           'start_time' => '12PM',
+           'end_time' => '3PM',
            'date' => date_create('24 July 2021'),
            'address' => 'Oritamefa Baptist Church, Queen Elizabeth II Road, Total Garden, Ibadan, Nigeria',
            'first_contact_person' => 'Femi',

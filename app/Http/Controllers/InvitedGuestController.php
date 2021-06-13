@@ -63,9 +63,17 @@ class InvitedGuestController extends Controller
             'comment' => $request->input('comment'),
             'wedding_event_id' => $weddingEvent->id
         ]);
-
-        //return view('guests.ticket', compact('guest'));
-        $pdf = self::generateTicketPDF($guest);
+        $guest->load('weddingEvent');
+       // return view('guests.ticket', compact('guest'));
+        $name = "{$guest->slug}.svg";
+        Storage::disk('ticket')->put($name, $writer);
+        $link = url('ticket/'. $name);
+        //return view('guests.ticket', compact('guest', 'link'));
+        //$html = view('guests.ticket', compact('guest', 'link'))->render();
+        $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
+        return $pdf->setPaper('a4', 'landscape')->stream('document.pdf');
+        //$pdf = \App::make('dompdf.wrapper');
+        //$pdf->loadHTML($html);
         return $pdf->setPaper('a4', 'landscape')->download('ticket.pdf');
     }
 

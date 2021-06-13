@@ -30,4 +30,8 @@ class InvitedGuest extends Model
         return trim(substr($svg, strpos($svg, "\n") + 1));
     }
 
+    public function weddingEvent(){
+        return $this->belongsTo(WeddingEvent::class, 'wedding_event_id');
+    }
+
 }

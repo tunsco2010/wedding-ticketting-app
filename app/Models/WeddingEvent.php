@@ -13,7 +13,8 @@ class WeddingEvent extends Model
     protected $fillable = [
         'name', 'date', 'address',
         'first_contact_person', 'second_contact_person',
-        'event_center', 'seating_arrangement', 'banner', 'max_guest'
+        'event_center', 'seating_arrangement', 'banner', 'max_guest',
+        'groom', 'bride', 'start_time', 'end_time'
     ];
 
 //    public function setDateAttribute($input)
