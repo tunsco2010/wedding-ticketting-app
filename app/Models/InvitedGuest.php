@@ -15,7 +15,7 @@ class InvitedGuest extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['slug', 'barcode', 'name', 'number_of_guest', 'reserved_for', 'email', 'phone', 'room_needed', 'comment', 'wedding_event_id'];
+    protected $fillable = ['slug', 'barcode', 'name', 'status', 'number_of_guest', 'reserved_for', 'email', 'phone', 'room_needed', 'comment', 'wedding_event_id'];
 
 
     public function getQrCodeAttribute()

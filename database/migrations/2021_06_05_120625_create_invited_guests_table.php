@@ -17,6 +17,7 @@ class CreateInvitedGuestsTable extends Migration
             $table->bigIncrements('id');
             $table->string('slug')->unique();
             $table->string('name');
+            $table->tinyInteger('status')->default('0');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->unsignedInteger('number_of_guest');
