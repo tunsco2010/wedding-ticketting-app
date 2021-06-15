@@ -2,26 +2,26 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ticket</title>
-    <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
+    <style type="text/css" media="all">
+        html {
+            clear: both;
         }
-
+        @page {
+            margin: 0;
+        }
+        body {
+            margin: 0;
+            text-shadow: 2px 2px gold !important;
+            /*color: #681319;*/
+            color: #000;
+            font-size: 20px;
+            font-weight: bolder;
+        }
         .ww-title {
             font-family: "Great Vibes", cursive;
             color: white;
             margin-bottom: .3rem;
-        }
-
-
-        [data-aos] {
-            opacity: 1 !important;
-            transform: translate(0) scale(1) !important;
         }
 
         .border-r {
@@ -39,25 +39,14 @@
         .border-b {
             border-bottom: 1px dotted #fada5f;
         }
-
         .text-letter-spacing {
             letter-spacing: 5px;
         }
 
-        .wedding-card {
-            background-color: #681319;
-            width: 550px;
-            border-radius: 25px;
-            content: "";
-            clear: both;
-            display: table;
-            margin: 100px auto;
-        }
-
         .wedding-card__seat {
             width: 10%;
-            text-align: center;
             float: left;
+            text-align: center;
         }
 
         .wedding-card__seat p {
@@ -66,96 +55,56 @@
             writing-mode: vertical-lr;
             padding-top: 3rem;
             margin-left: 1rem;
-
         }
-
-        .wedding-card__main-info {
-            width: 55%;
-            float: left;
-            padding: 0.5rem 0;
-        }
-
-        .event-info .venue {
-            width: 70%;
-            float: left;
-            font-size: .8rem;
-            line-height: 1.2rem;
-        }
-
-        .event-info .venue p {
-            padding: 0 .7rem .7rem;
-        }
-
-        .event-info .venue small {
-            padding: 0 .7rem;
-        }
-
-        .event-info .date {
-            width: 25%;
-            float: left;
-            text-align: center;
-        }
-
-        .event-info .date p {
-            padding-bottom: 2.2rem;
-        }
-
-        .wedding-card__barcode {
-            width: 25%;
-            float: left;
-            padding: 1rem;
-        }
-
         .wedding-card__barcode p {
             margin-top: 1rem;
-            color: white;
+            /*color: #681319;*/
+            color: #000;
             font-weight: bold;
         }
 
         .wedding-card__barcode img {
-            width: 100%;
+            display: block;
+            margin-top: 7%;
+            border: none;
         }
 
         .center-text {
             text-align: center;
         }
 
+        #wedding-card{
+            background-color: #000000; width: 650px; padding: 5px 20px;
+            border-radius: 25px; clear: both; margin: 100px auto; position: relative; overflow: hidden; height: 250px;
+            background-image: url({{ asset('img/bg.jpg') }}); background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            border: 2px solid gold;
+        }
+
     </style>
+
 </head>
-<body id="top" style="color: #fada5f;">
-<div>
-    <div class="wedding-card">
-        <div class="wedding-card__seat">
-            <p>Ticket for {{ $guest->number_of_guest }} seat(s)</p>
-        </div>
-        <div class="border-l wedding-card__main-info">
-            <section class="center-text">
-                <h2 class="ww-title text-letter-spacing">{{ $guest->weddingEvent->bride }}</h2>
-                <div>
-                    <img src="{{ asset('asset/images/divider.PNG') }}" alt="">
-                </div>
-                <h2 class="ww-title text-letter-spacing">{{ $guest->weddingEvent->groom }}</h2>
-            </section>
-            <section class="event-info border-t">
-                <section
-                    class="border-r venue">
+<body>
+    <div id="wedding-card" style="">
+        <div class="wedding-card__main-info" style="width: 400px; float: left; padding: 5px">
+{{--            <div class="center-text" style="width: 390px;">--}}
+{{--                <h2 class="ww-title text-letter-spacing">{{ $guest->weddingEvent->bride }}</h2>--}}
+{{--                <div style="size: 30px; margin: 0; padding: 0;">&</div>--}}
+{{--                <h2 class="ww-title text-letter-spacing">{{ $guest->weddingEvent->groom }}</h2>--}}
+{{--            </div>--}}
+            <div class="event-info" style="width: 400px; position: relative;opacity: 1;">
+                <div class="venue" style="width: 350px;  display: inline-block;">
                     <p class="border-b">{{ $guest->weddingEvent->address }}.</p>
                     <small>Name: {{ $guest->name }}</small><br/>
                     <small>Time: {{ $guest->weddingEvent->start_time }}-{{ $guest->weddingEvent->end_time }}</small>
-                </section>
-                <section class="date">
-                    <p>
-                        <small>{{ date_format(date_create($guest->weddingEvent->date), 'F dS') }}</small>
-                        <br/>{{ date_format(date_create($guest->weddingEvent->date), 'Y') }}</p>
-                </section>
-            </section>
+                </div>
+            </div>
         </div>
-        <div class="wedding-card__barcode">
-{{--                        <img src="{{ $link }}" alt="" style="width: 100%">--}}
-            <img src="{{ asset('asset/images/qrCode.jpg') }}" alt="">
+        <div class="wedding-card__barcode" style="width: 200px; float: right;">
+            <img src="{{ $link }}" alt="" style="width: 90%">
             <p class="center-text text-letter-spacing">ACCESS</p>
         </div>
     </div>
-</div>
 </body>
 </html>

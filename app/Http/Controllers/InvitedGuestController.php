@@ -44,8 +44,9 @@ class InvitedGuestController extends Controller
         $slug = mt_rand(100000, 999999);
         $svg = (new Writer(
             new ImageRenderer(
-//                new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(153, 50, 204), new Rgb(255, 255, 255))),
-                new RendererStyle(200, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
+                //new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(153, 50, 204), new Rgb(255, 255, 255))),
+//                new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(104, 19, 25), new Rgb(255, 255, 255))),
+                new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
                 new SvgImageBackEnd
             )
         ))->writeString($slug);
