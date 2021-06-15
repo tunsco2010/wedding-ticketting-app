@@ -102,7 +102,8 @@ class InvitedGuestController extends Controller
 
     public function ticket()
     {
-        return view('guests.ticket');
+        $guest = InvitedGuest::first();
+        return view('guests.ticket',compact('guest') );
     }
 
     private static function generateTicketPDF($guest)
