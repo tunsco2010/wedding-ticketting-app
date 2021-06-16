@@ -62,13 +62,11 @@
             /*color: #000;*/
             font-weight: bold;
         }
-
         .wedding-card__barcode img {
             display: block;
             margin-top: 3%;
             border: none;
         }
-
         .center-text {
             text-align: center;
         }
