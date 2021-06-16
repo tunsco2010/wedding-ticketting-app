@@ -13,8 +13,8 @@
         body {
             margin: 0;
             text-shadow: 2px 2px gold !important;
-            /*color: #681319;*/
-            color: #000;
+            color: #681319;
+            /*color: #000;*/
             font-size: 20px;
             font-weight: bolder;
         }
@@ -58,14 +58,14 @@
         }
         .wedding-card__barcode p {
             margin-top: 1rem;
-            /*color: #681319;*/
-            color: #000;
+            color: #681319;
+            /*color: #000;*/
             font-weight: bold;
         }
 
         .wedding-card__barcode img {
             display: block;
-            margin-top: 7%;
+            margin-top: 3%;
             border: none;
         }
 
@@ -88,21 +88,17 @@
 <body>
     <div id="wedding-card" style="">
         <div class="wedding-card__main-info" style="width: 400px; float: left; padding: 5px">
-{{--            <div class="center-text" style="width: 390px;">--}}
-{{--                <h2 class="ww-title text-letter-spacing">{{ $guest->weddingEvent->bride }}</h2>--}}
-{{--                <div style="size: 30px; margin: 0; padding: 0;">&</div>--}}
-{{--                <h2 class="ww-title text-letter-spacing">{{ $guest->weddingEvent->groom }}</h2>--}}
-{{--            </div>--}}
             <div class="event-info" style="width: 400px; position: relative;opacity: 1;">
                 <div class="venue" style="width: 350px;  display: inline-block;">
-                    <p class="border-b">{{ $guest->weddingEvent->address }}.</p>
+                    <p class="border-b">{{ $guest->weddingEvent->event_center }}.</p>
                     <small>Name: {{ $guest->name }}</small><br/>
-                    <small>Time: {{ $guest->weddingEvent->start_time }}-{{ $guest->weddingEvent->end_time }}</small>
+                    <small>Time: {{ $guest->weddingEvent->start_time }} - {{ $guest->weddingEvent->end_time }}</small><br/>
+                    <small>No Guest(s): {{ $guest->number_of_guest }}</small>
                 </div>
             </div>
         </div>
         <div class="wedding-card__barcode" style="width: 200px; float: right;">
-            <img src="{{ $link }}" alt="" style="width: 90%">
+            <img src="{{ $link }}" alt="" style="width: 100%">
             <p class="center-text text-letter-spacing">ACCESS</p>
         </div>
     </div>

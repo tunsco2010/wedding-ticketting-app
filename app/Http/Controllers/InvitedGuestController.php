@@ -44,7 +44,6 @@ class InvitedGuestController extends Controller
         $slug = mt_rand(100000, 999999);
         $svg = (new Writer(
             new ImageRenderer(
-                //new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(153, 50, 204), new Rgb(255, 255, 255))),
 //                new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(104, 19, 25), new Rgb(255, 255, 255))),
                 new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
                 new SvgImageBackEnd
@@ -65,17 +64,12 @@ class InvitedGuestController extends Controller
             'wedding_event_id' => $weddingEvent->id
         ]);
         $guest->load('weddingEvent');
-       // return view('guests.ticket', compact('guest'));
         $name = "{$guest->slug}.svg";
         Storage::disk('ticket')->put($name, $writer);
         $link = url('ticket/'. $name);
-        //return view('guests.ticket', compact('guest', 'link'));
-        //$html = view('guests.ticket', compact('guest', 'link'))->render();
         $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
-        return $pdf->setPaper('a4', 'landscape')->stream('document.pdf');
-        //$pdf = \App::make('dompdf.wrapper');
-        //$pdf->loadHTML($html);
-        return $pdf->setPaper('a4', 'landscape')->download('ticket.pdf');
+        $name = $guest->slug . '.pdf';
+        return $pdf->setPaper('a4', 'landscape')->download($name);
     }
 
     public function show(InvitedGuest $invitedGuest)
