@@ -12,6 +12,7 @@ use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class InvitedGuestController extends Controller
@@ -19,7 +20,8 @@ class InvitedGuestController extends Controller
 
     public function index()
     {
-        return response()->json(InvitedGuest::all(), 200);
+        $guests = InvitedGuest::all();
+        return view('guests.index', compact('guests'));
     }
 
     public function rsvp($slug)
@@ -70,6 +72,37 @@ class InvitedGuestController extends Controller
         $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
         $name = $guest->slug . '.pdf';
         return $pdf->setPaper('a4', 'landscape')->download($name);
+    }
+
+    public function downloadTicket(InvitedGuest $guest){
+        $guest->load('weddingEvent');
+        $link = url('ticket/'. $guest->slug.'.svg');
+        $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
+        $name = $guest->name . '_'.$guest->slug . '.pdf';
+        return $pdf->setPaper('a4', 'landscape')->download($name);
+    }
+
+    public function sendTicket(InvitedGuest $guest){
+        $guest->load('weddingEvent');
+        $link = url('ticket/'. $guest->slug.'.svg');
+        $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
+        Mail::send('guests.email.ticket', compact('guest'), function ($message)
+        use ($pdf, $guest) {
+            if (filter_var($guest->email, FILTER_VALIDATE_EMAIL)) {
+                $message->to($guest->email, $guest->name);
+            } else {
+                $message->to('tundeawopegba@gmail.com');
+            }
+            $message->subject('Ticket for'. $guest->name);
+            $message->attachData($pdf->output(), $guest->name.'_ticket.pdf', [
+                'mime' => 'application/pdf',
+            ]);
+        });
+        if (Mail::failures()) {
+            return back()->with(['error'=> 'Mail not sent']);
+        }
+
+        return back()->with(['message'=> 'Mail sent successfully']);
     }
 
     public function show(InvitedGuest $invitedGuest)

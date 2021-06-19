@@ -26,9 +26,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('events/guests/ticket', [InvitedGuestController::class, 'ticket']);
+Route::get('events/guests/ticket/download/{guest}', [InvitedGuestController::class, 'downloadTicket'])->name('downloadTicket')->middleware('auth:sanctum');
+Route::get('events/guests/ticket/send/{guest}', [InvitedGuestController::class, 'sendTicket'])->name('sendTicket')->middleware('auth:sanctum');
 Route::get('events/guests/{event}', [InvitedGuestController::class, 'index'])->middleware('auth:sanctum')->name('event-guests');
 Route::get('events/guests/rsvp/{slug}', [InvitedGuestController::class, 'rsvp'])->name('event-guests-rsvp');
 Route::get('events/guests/rsvp/verify{guest}', [InvitedGuestController::class, 'verifyRsvp'])->name('event-guests-rsvp-verify');
 Route::post('events/guests/rsvp/{weddingEvent}', [InvitedGuestController::class, 'store'])->name('event-guests-rsvp');
-Route::resource('events', WeddingEventController::class)->middleware('auth:sanctum');
 Route::resource('events', WeddingEventController::class)->middleware('auth:sanctum');
