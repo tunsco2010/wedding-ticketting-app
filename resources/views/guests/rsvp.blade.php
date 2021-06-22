@@ -17,9 +17,6 @@
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap"/>
     </noscript>
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link href="{{ asset('asset/css/bootstrap.min.css?ver=1.1.0') }}" rel="stylesheet">
     <link href="{{ asset('asset/css/font-awesome/css/all.min.css?ver=1.1.0') }}" rel="stylesheet">
     <link href="{{ asset('asset/css/aos.css?ver=1.1.0') }}" rel="stylesheet">
@@ -83,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="mt-3"><img class="img-fluid" src="{{ asset('asset/images/invitation_card.jpg') }}" alt="Bride" data-aos="flip-right" data-aos-duration="1000"/>
+                        <div class="mt-3"><img class="img-fluid" src="{{ asset('asset/images/ore_iv.jpg') }}" alt="Bride" data-aos="flip-right" data-aos-duration="1000"/>
                             <p class="pt-3 text-left text-muted"></p>
                             <h3 class="h2 ww-title"> Invitation Card</h3>
                         </div>
@@ -224,17 +221,121 @@
                 <div class="ww-photo-gallery">
                     <div class="container">
                         <h2 class="h1 text-center pb-3 ww-title" data-aos="zoom-in-down" data-aos-duration="1000">Photo Gallery</h2>
-                        <div class="col-md-12 text-center ww-category-filter mb-4"><a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="all">All</a><a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="vacation">Our Vacation</a><a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="party">Party</a><a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="ceremony">Ceremony</a><a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="wedding">Wedding</a></div>
+                        <div class="col-md-12 text-center ww-category-filter mb-4">
+                            <a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="all">All</a>
+                            <a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="introduction">Introduction</a>
+                            <a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="parent">Parents</a>
+                            <a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="party">Party</a>
+                            <a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="ceremony">Ceremony</a>
+                            <a class="btn btn-outline-primary ww-filter-button" href="#" data-filter="wedding">Wedding</a>
+                        </div>
                         <div class="ww-gallery" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-duration="1000" data-aos-offset="0">
                             <div class="card-columns">
-                                <div class="card" data-groups="[&quot;vacation&quot;,&quot;ceremony&quot;]"><a href="images/gallery-pic-1.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-1.jpg" alt="Gallery Pic 1"/></a></div>
-                                <div class="card" data-groups="[&quot;party&quot;,&quot;wedding&quot;]"><a href="images/gallery-pic-2.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-2.jpg" alt="Gallery Pic 2"/></a></div>
-                                <div class="card" data-groups="[&quot;vacation&quot;]"><a href="images/gallery-pic-3.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-3.jpg" alt="Gallery Pic 3"/></a></div>
-                                <div class="card" data-groups="[&quot;party&quot;,&quot;vacation&quot;]"><a href="images/gallery-pic-4.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-4.jpg" alt="Gallery Pic 4"/></a></div>
-                                <div class="card" data-groups="[&quot;vacation&quot;]"><a href="images/gallery-pic-5.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-5.jpg" alt="Gallery Pic 5"/></a></div>
-                                <div class="card" data-groups="[&quot;wedding&quot;,&quot;ceremony&quot;,&quot;party&quot;]"><a href="images/gallery-pic-6.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-6.jpg" alt="Gallery Pic 6"/></a></div>
-                                <div class="card" data-groups="[&quot;vacation&quot;]"><a href="images/gallery-pic-7.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-7.jpg" alt="Gallery Pic 7"/></a></div>
-                                <div class="card" data-groups="[&quot;wedding&quot;,&quot;party&quot;]"><a href="images/gallery-pic-8.jpg" data-toggle="lightbox" data-gallery="ww-gallery"><img class="img-fluid" src="images/gallery-pic-8.jpg" alt="Gallery Pic 8"/></a></div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/couple.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/couple.jpeg') }}" alt="Couple"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;,&quot;parent&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/michelle_parent.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/michelle_parent.jpeg') }}" alt="Michelle's parent"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;,&quot;parent&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/ore_parent_2.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/ore_parent_2.jpeg') }}" alt="David's Parent"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/couple_and_wife_siblings.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/couple_and_wife_siblings.jpeg') }}" alt="Michel Siblings"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/family_pic.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/family_pic.jpeg') }}" alt="Family Picture"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/her_eminence.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/her_eminence.jpeg') }}" alt="CAN President's Wife"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/michel_siblings-1.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/michel_siblings-1.jpeg') }}" alt="Michelle Siblings"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;,&quot;parent&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/michelle_mother.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/michelle_mother.jpeg') }}" alt="Michelle Mother"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/ore_pastor.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/ore_pastor.jpeg') }}" alt="David's Pastor"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/uncle_b.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/uncle_b.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/femi_michelle.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/femi_michelle.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/michelle_sisters.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/michelle_sisters.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;,&quot;parent&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/couple_and_parent_1.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/couple_and_parent_1.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;,&quot;parent&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/couple_and_parent_2.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/couple_and_parent_2.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/general.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/general.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/guys.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/guys.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/couple_and_david_family.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/couple_and_david_family.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;,&quot;parent&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/michelle_father.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/michelle_father.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;,&quot;parent&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/david_father.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/david_father.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/enioluwa.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/enioluwa.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
+                                <div class="card" data-groups="[&quot;introduction&quot;]">
+                                    <a href="{{ asset('asset/images/introduction/david.jpeg') }}" data-toggle="lightbox" data-gallery="ww-gallery">
+                                        <img class="img-fluid" src="{{ asset('asset/images/introduction/david.jpeg') }}" alt="Uncle B"/>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
