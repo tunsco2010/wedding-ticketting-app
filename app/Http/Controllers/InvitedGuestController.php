@@ -47,7 +47,7 @@ class InvitedGuestController extends Controller
         $svg = (new Writer(
             new ImageRenderer(
 //                new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(104, 19, 25), new Rgb(255, 255, 255))),
-                new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
+                new RendererStyle(900, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
                 new SvgImageBackEnd
             )
         ))->writeString($slug);
