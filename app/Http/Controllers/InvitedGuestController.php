@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\InvitedGuestExport;
+use App\Imports\InvitedGuestImport;
 use App\Models\InvitedGuest;
 use App\Models\WeddingEvent;
 use BaconQrCode\Renderer\Color\Rgb;
@@ -14,6 +16,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InvitedGuestController extends Controller
 {
@@ -35,9 +38,22 @@ class InvitedGuestController extends Controller
         return response()->json([$guest]);
     }
 
-    public function create()
+    public function import(Request $request, WeddingEvent $weddingEvent)
     {
-        //
+
+        $request->validate([
+            'guests'=> 'required|mimes:csv,xlsx'
+        ]);
+        try {
+            Excel::import(new InvitedGuestImport($weddingEvent), request()->file('guests'));
+            return back()->with(['message'=>'Records imported successfully']);
+        } catch (\Exception $e) {
+            return back()->with(['message' => $e->getMessage()]);
+        }
+    }
+
+    public function export(Request $request, WeddingEvent $weddingEvent){
+        return Excel::download(new InvitedGuestExport($weddingEvent), 'guest_list.xlsx');
     }
 
     public function store(Request $request, WeddingEvent $weddingEvent)

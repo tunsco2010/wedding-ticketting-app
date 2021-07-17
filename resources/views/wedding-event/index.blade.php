@@ -50,7 +50,7 @@
                                     <div>
                                         <p class="font-semibold">{{ $event['name'] }}</p>
                                         <p class="text-xs text-gray-600 dark:text-gray-400">
-                                            10x Developer
+                                            {{ $event['max_guest'] }}
                                         </p>
                                     </div>
                                 </div>

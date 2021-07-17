@@ -2,7 +2,19 @@
 @section('title', 'Event List')
 @section('content')
     <div class="container grid px-6 mx-auto">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Import Guest List.
+        </h2>
+        <form class="form row col-md-12" action="{{ route('importGuest', $weddingEvent->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="col-md-6 form-group">
+                <input type="file" class="form-control" name="guests">
+                <button type="submit" class="btn btn-primary form-control font-semibold text-purple-100 bg-purple-600 justify-between p-4 mb-8 text-sm focus:shadow-outline-purple">
+                    <i class="fa fa-upload"> Upload</i>
+                </button>
+            </div>
 
+        </form>
         <!-- With actions -->
         <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
             @if (Session::has('message'))
@@ -11,16 +23,27 @@
                 </div>
             @endif
         </h4>
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Guest List
+        </h2>
+        <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+           href="{{ route('exportGuest', $weddingEvent->id ) }}">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <span>Export </span>
+            </div>
+            <span>Guest List &RightArrow;</span>
+        </a>
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Name</th>
-                        <th class="px-4 py-3">Email</th>
-                        <th class="px-4 py-3">Phone</th>
-                        <th class="px-4 py-3">N0.</th>
-                        <th class="px-4 py-3">Type</th>
+                        <th class="px-4 py-3">Contact</th>
+                        <th class="px-4 py-3">N0. & Type</th>
                         <th class="px-4 py-3">Room</th>
                         <th class="px-4 py-3">Attending</th>
                         <th class="px-4 py-3">Comment</th>
@@ -40,15 +63,27 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-3 text-sm">{{ $guest['email'] }}</td>
-                            <td class="px-4 py-3 text-sm">{{ $guest['phone'] }}</td>
-                            <td class="px-4 py-3 text-sm">{{ $guest['number_of_guest'] }}</td>
-                            <td class="px-4 py-3 text-sm">{{ $guest['reserved_for'] }}</td>
+                            <td class="px-4 py-3 text-sm">
+                                <div class="flex items-center text-sm">
+                                    <div>
+                                        <p class="font-semibold">{{ $guest['email'] }}</p>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">{{ $guest['phone'] }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <div class="flex items-center text-sm">
+                                    <div>
+                                        <p class="font-semibold">{{ $guest['reserved_for'] }}</p>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">NO: {{ $guest['number_of_guest'] }}</p>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="px-4 py-3 text-sm">{{ $guest['room_needed'] }}</td>
                             <td class="px-4 py-3 text-sm">{{ $guest['attending'] }}</td>
                             <td class="px-4 py-3 text-sm">{{ $guest['comment'] }}</td>
                             <td class="px-4 py-3 text-sm">{{ date('d M Y', strtotime($guest['created_at'])) }}</td>
-                            <td>{{  $guest['status'] }}</td>
+                            <td class="px-4 py-3 text-sm">{{  $guest['status'] == 1 ? 'IN': 'OUT' }}</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
                                     <a href="{{ route('downloadTicket', $guest['id']) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">

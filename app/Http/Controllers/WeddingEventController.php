@@ -49,7 +49,7 @@ class WeddingEventController extends Controller
     public function show($id)
     {
         $weddingEvent = WeddingEvent::findOrFail($id);
-        $guests = InvitedGuest::where('wedding_event_id', '=', $id)->paginate(20)->toArray();
+        $guests = InvitedGuest::where('wedding_event_id', '=', $id)->latest()->paginate(20)->toArray();
         return view('wedding-event.show', compact('weddingEvent', 'guests'));
     }
 

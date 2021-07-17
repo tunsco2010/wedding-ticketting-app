@@ -26,7 +26,9 @@ class WeddingEventSeeder extends Seeder
            'first_contact_person' => 'Femi',
            'second_contact_person' => 'Tunde',
            'event_center' => 'Emeritus Professor Theophilus Oladipo Ogunlesi Hall, Ibadan, Nigeria.',
-           'seating_arrangement' => 'Round Table', 'banner' => null, 'max_guest'=> 600
+           'seating_arrangement' => 'Round Table',
+           'banner' => null,
+           'max_guest'=> 600
        ]);
     }
 }
