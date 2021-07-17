@@ -83,26 +83,30 @@ class InvitedGuestController extends Controller
     }
 
     public function sendTicket(InvitedGuest $guest){
-        $guest->load('weddingEvent');
-        $link = url('ticket/'. $guest->slug.'.svg');
-        $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
-        Mail::send('guests.email.ticket', compact('guest'), function ($message)
-        use ($pdf, $guest) {
-            if (filter_var($guest->email, FILTER_VALIDATE_EMAIL)) {
-                $message->to($guest->email, $guest->name);
-            } else {
-                $message->to('tundeawopegba@gmail.com');
-            }
-            $message->subject('Ticket for'. $guest->name);
-            $message->attachData($pdf->output(), $guest->name.'_ticket.pdf', [
-                'mime' => 'application/pdf',
-            ]);
-        });
-        if (Mail::failures()) {
-            return back()->with(['error'=> 'Mail not sent']);
-        }
 
-        return back()->with(['message'=> 'Mail sent successfully']);
+        try {
+            $guest->load('weddingEvent');
+            $link = url('ticket/' . $guest->slug . '.svg');
+            $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
+            Mail::send('guests.email.ticket', compact('guest'), function ($message)
+            use ($pdf, $guest) {
+                if (filter_var($guest->email, FILTER_VALIDATE_EMAIL)) {
+                    $message->to($guest->email, $guest->name);
+                } else {
+                    $message->to('tundeawopegba@gmail.com');
+                }
+                $message->subject('Ticket for' . $guest->name);
+                $message->attachData($pdf->output(), $guest->name . '_ticket.pdf', [
+                    'mime' => 'application/pdf',
+                ]);
+            });
+            if (Mail::failures()) {
+                return back()->with(['error' => 'Mail not sent']);
+            }
+            return back()->with(['message' => 'Mail sent successfully']);
+        } catch (\Exception $e) {
+            return back()->with(['message' => $e->getMessage()]);
+        }
     }
 
     public function show(InvitedGuest $invitedGuest)

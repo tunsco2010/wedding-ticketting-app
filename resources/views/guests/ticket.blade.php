@@ -97,7 +97,7 @@
         </div>
         <div class="wedding-card__barcode" style="width: 200px; float: right;">
             <img src="{{ $link }}" alt="" style="width: 100%">
-            <p class="center-text text-letter-spacing">ACCESS</p>
+            <p class="center-text text-letter-spacing">CODE: {{ $guest->slug }}</p>
         </div>
     </div>
 </body>
