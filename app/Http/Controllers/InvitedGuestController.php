@@ -129,7 +129,8 @@ class InvitedGuestController extends Controller
 
     public function destroy(InvitedGuest $invitedGuest)
     {
-        //
+        $invitedGuest->forceDelete();
+        return back()->with(['message' => 'Deleted successfully']);
     }
 
     public function ticket()
