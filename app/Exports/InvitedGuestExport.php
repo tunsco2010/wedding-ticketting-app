@@ -52,12 +52,7 @@ class InvitedGuestExport implements FromView, WithEvents, ShouldAutoSize, WithSt
         return [
             // Style the first row as bold text.
             1    => ['font' => ['bold' => true]],
-
-            // Styling a specific cell by coordinate.
-            'B2' => ['font' => ['italic' => true]],
-
-            // Styling an entire column.
-            'C'  => ['font' => ['size' => 16]],
+            'B' => ['font' => ['italic' => true]],
         ];
     }
 }
