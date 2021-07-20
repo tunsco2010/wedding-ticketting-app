@@ -31,6 +31,8 @@ Route::get('events/guests/ticket/send/{guest}', [InvitedGuestController::class, 
 Route::delete('events/guests/ticket/delete/{invitedGuest}', [InvitedGuestController::class, 'destroy'])->name('deleteGuest')->middleware('auth:sanctum');
 Route::get('events/guests/{event}', [InvitedGuestController::class, 'index'])->middleware('auth:sanctum')->name('event-guests');
 Route::post('events/guests/import/{weddingEvent}', [InvitedGuestController::class, 'import'])->middleware('auth:sanctum')->name('importGuest');
+Route::post('events/guests/delete-all/{weddingEvent}', [InvitedGuestController::class, 'deleteAll'])->middleware('auth:sanctum')->name('deleteAll');
+
 Route::get('events/guests/export/{weddingEvent}', [InvitedGuestController::class, 'export'])->middleware('auth:sanctum')->name('exportGuest');
 Route::get('events/guests/rsvp/{slug}', [InvitedGuestController::class, 'rsvp'])->name('event-guests-rsvp');
 Route::get('events/guests/rsvp/verify/{guest}', [InvitedGuestController::class, 'verifyRsvp'])->name('event-guests-rsvp-verify');

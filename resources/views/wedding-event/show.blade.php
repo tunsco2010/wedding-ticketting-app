@@ -49,7 +49,17 @@
                         <th class="px-4 py-3">Comment</th>
                         <th class="px-4 py-3">Date</th>
                         <th class="px-4 py-3">Status</th>
-                        <th class="px-4 py-3">Actions</th>
+                        <th class="px-4 py-3">
+                            <form class="form row col-md-12" action="{{ route('deleteAll', $weddingEvent->id) }}" method="POST" enctype="multipart/form-data"
+                                  onsubmit="return confirm('Do you really want to Delete all guests?');">
+                                @csrf
+                                <div class="col-md-6 form-group">
+                                    <button type="submit" class="btn btn-primary form-control font-semibold text-purple-100 text-purple-600 justify-between text-sm focus:shadow-outline-purple">
+                                        <i class="fa fa-trash"> Delete All</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </th>
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">

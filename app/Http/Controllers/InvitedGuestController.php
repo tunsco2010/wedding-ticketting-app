@@ -38,9 +38,18 @@ class InvitedGuestController extends Controller
         return response()->json([$guest]);
     }
 
+    public function deleteAll($weddingEvent)
+    {
+        try {
+           InvitedGuest::where('wedding_event_id', $weddingEvent)->delete();
+            return back()->with(['message' => 'Records deleted successfully']);
+        } catch (\Exception $e) {
+            return back()->with(['error_message' => $e->getMessage()]);
+        }
+    }
+
     public function import(Request $request, WeddingEvent $weddingEvent)
     {
-
         $request->validate([
             'guests'=> 'required|mimes:csv,xlsx'
         ]);
