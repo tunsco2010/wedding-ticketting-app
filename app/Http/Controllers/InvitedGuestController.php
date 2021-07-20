@@ -92,7 +92,17 @@ class InvitedGuestController extends Controller
 
     public function downloadTicket(InvitedGuest $guest){
         $guest->load('weddingEvent');
-        $link = url('ticket/'. $guest->slug.'.svg');
+
+        $svg = (new Writer(
+            new ImageRenderer(
+                new RendererStyle(900, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
+                new SvgImageBackEnd
+            )
+        ))->writeString($guest->slug);
+        $writer = trim(substr($svg, strpos($svg, "\n") + 1));
+        $name = "{$guest->slug}.svg";
+        Storage::disk('ticket')->put($name, $writer);
+        $link = url('ticket/'. $name);
         $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
         $name = $guest->name . '_'.$guest->slug . '.pdf';
         return $pdf->setPaper('a4', 'landscape')->download($name);

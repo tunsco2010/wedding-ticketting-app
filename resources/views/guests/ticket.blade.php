@@ -14,7 +14,6 @@
             margin: 0;
             text-shadow: 2px 2px gold !important;
             color: #681319;
-            /*color: #000;*/
             font-size: 20px;
             font-weight: bolder;
         }
@@ -59,7 +58,6 @@
         .wedding-card__barcode p {
             margin-top: 1rem;
             color: #681319;
-            /*color: #000;*/
             font-weight: bold;
         }
         .wedding-card__barcode img {
@@ -72,12 +70,14 @@
         }
 
         #wedding-card{
-            background-color: #000000; width: 650px; padding: 5px 20px;
+            /*background-color: #ffffff;*/
+            width: 650px; padding: 5px 20px;
             border-radius: 25px; clear: both; margin: 100px auto; position: relative; overflow: hidden; height: 250px;
-            background-image: url({{ asset('img/bg.jpg') }}); background-repeat: no-repeat;
+            background-image: url({{ asset('img/logo_bg.jpg') }}); background-repeat: no-repeat;
             background-attachment: fixed;
-            background-position: center;
-            border: 2px solid gold;
+            background-size: 400px;
+            background-position: 10%;
+            border: 2px solid #801372;
         }
 
     </style>
