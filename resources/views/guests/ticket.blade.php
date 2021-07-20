@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="wedding-card__barcode" style="width: 200px; float: right;">
-            <img src="{{ $link }}" alt="" style="width: 100%">
+            {!! DNS2D::getBarcodeHTML("$guest->slug", 'QRCODE') !!}
             <p class="center-text text-letter-spacing">CODE: {{ $guest->slug }}</p>
         </div>
     </div>
