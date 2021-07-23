@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\InvitedGuestExport;
+use App\Http\Controllers\Admin\SendSMS;
 use App\Imports\InvitedGuestImport;
 use App\Models\InvitedGuest;
 use App\Models\WeddingEvent;
@@ -71,7 +72,6 @@ class InvitedGuestController extends Controller
         $slug = mt_rand(100000, 999999);
         $svg = (new Writer(
             new ImageRenderer(
-//                new RendererStyle(400, 0, null, null, Fill::uniformColor(new Rgb(104, 19, 25), new Rgb(255, 255, 255))),
                 new RendererStyle(900, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
                 new SvgImageBackEnd
             )
@@ -91,28 +91,14 @@ class InvitedGuestController extends Controller
             'wedding_event_id' => $weddingEvent->id
         ]);
         $guest->load('weddingEvent');
-        $name = "{$guest->slug}.svg";
-        Storage::disk('ticket')->put($name, $writer);
-        $link = url('ticket/'. $name);
-        $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
+        $pdf = PDF::loadView('guests.ticket', compact('guest'));
         $name = $guest->slug . '.pdf';
         return $pdf->setPaper('a4', 'landscape')->download($name);
     }
 
     public function downloadTicket(InvitedGuest $guest){
         $guest->load('weddingEvent');
-
-        $svg = (new Writer(
-            new ImageRenderer(
-                new RendererStyle(900, 0, null, null, Fill::uniformColor(new Rgb(0, 0, 0), new Rgb(255, 255, 255))),
-                new SvgImageBackEnd
-            )
-        ))->writeString($guest->slug);
-        $writer = trim(substr($svg, strpos($svg, "\n") + 1));
-        $name = "{$guest->slug}.svg";
-        Storage::disk('ticket')->put($name, $writer);
-        $link = url('ticket/'. $name);
-        $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
+        $pdf = PDF::loadView('guests.ticket', compact('guest'));
         $name = $guest->name . '_'.$guest->slug . '.pdf';
         return $pdf->setPaper('a4', 'landscape')->download($name);
     }
@@ -121,8 +107,8 @@ class InvitedGuestController extends Controller
 
         try {
             $guest->load('weddingEvent');
-            $link = url('ticket/' . $guest->slug . '.svg');
-            $pdf = PDF::loadView('guests.ticket', compact('guest', 'link'));
+
+            $pdf = PDF::loadView('guests.ticket', compact('guest'));
             Mail::send('guests.email.ticket', compact('guest'), function ($message)
             use ($pdf, $guest) {
                 if (filter_var($guest->email, FILTER_VALIDATE_EMAIL)) {
@@ -142,6 +128,33 @@ class InvitedGuestController extends Controller
         } catch (\Exception $e) {
             return back()->with(['message' => $e->getMessage()]);
         }
+    }
+
+    public function  sendAllPasscodeBySMS(Request $request, $weddingEvent){
+        $guests =  InvitedGuest::where('wedding_event_id', $weddingEvent)->get();
+        $successful= 0; $failed = 0;
+        foreach ($guests as $guest){
+            if(!empty($guest->phone)){
+                $eBulkSMS = new SendSMS();
+                $res = $eBulkSMS->sendSMS('Michelle-DAVID-2021', $this->getTextMessage($guest), $guest->phone);
+                if($res){
+                    $successful++;
+                }else{
+                    $failed++;
+                }
+            }
+        }
+        return back()->with(['message' => "{$successful} SMS sent successfully and {$failed} failed."]);
+    }
+    public function  sendPasscodeBySMS($id){
+
+        $guest = InvitedGuest::findOrFail($id);
+        if(!empty($guest->phone)){
+            $eBulkSMS = new SendSMS();
+            $eBulkSMS->sendSMS('Michelle-DAVID-2021', $this->getTextMessage($guest), $guest->phone);
+            return back()->with(['message' => 'SMS sent successfully']);
+        }
+        return back()->with(['error_message'=> 'Could not send sms, check the phone number an try again']);
     }
 
     public function show(InvitedGuest $invitedGuest)
@@ -192,5 +205,10 @@ class InvitedGuestController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($html);
         return $pdf;
+    }
+
+    private function getTextMessage($guest)
+    {
+        return "Hello {$guest->name}, kindly present to the wedding team this PASSCODE: {$guest->slug} for your entrance and seat reservation. Warm regards, Michelle & David.";
     }
 }

@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "bostonknowledge.com",
+  "Id": "b01e5f62-8e00-4f58-9929-c298a10519eb"
+}

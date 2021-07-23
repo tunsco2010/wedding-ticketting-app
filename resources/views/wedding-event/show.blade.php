@@ -50,12 +50,21 @@
                         <th class="px-4 py-3">Date</th>
                         <th class="px-4 py-3">Status</th>
                         <th class="px-4 py-3">
-                            <form class="form row col-md-12" action="{{ route('deleteAll', $weddingEvent->id) }}" method="POST" enctype="multipart/form-data"
+                            <form class="form row col-md-6" action="{{ route('deleteAll', $weddingEvent->id) }}" method="POST" enctype="multipart/form-data"
                                   onsubmit="return confirm('Do you really want to Delete all guests?');">
                                 @csrf
                                 <div class="col-md-6 form-group">
                                     <button type="submit" class="btn btn-primary form-control font-semibold text-purple-100 text-purple-600 justify-between text-sm focus:shadow-outline-purple">
                                         <i class="fa fa-trash"> Delete All</i>
+                                    </button>
+                                </div>
+                            </form>
+                            <form class="form row col-md-6" action="{{ route('sendPasscodeBySMS', $weddingEvent->id) }}" method="POST" enctype="multipart/form-data"
+                                  onsubmit="return confirm('Do you really want to Delete all guests?');">
+                                @csrf
+                                <div class="col-md-6 form-group">
+                                    <button type="submit" class="btn btn-primary form-control font-semibold text-purple-100 text-purple-600 justify-between text-sm focus:shadow-outline-purple">
+                                        <i class="fa fa-trash"> Send All Passcode</i>
                                     </button>
                                 </div>
                             </form>
