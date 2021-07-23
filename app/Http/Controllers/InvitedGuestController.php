@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\InvitedGuestExport;
-use App\Http\Controllers\Admin\SendSMS;
 use App\Imports\InvitedGuestImport;
 use App\Models\InvitedGuest;
 use App\Models\WeddingEvent;
@@ -130,21 +129,26 @@ class InvitedGuestController extends Controller
         }
     }
 
-    public function  sendAllPasscodeBySMS(Request $request, $weddingEvent){
-        $guests =  InvitedGuest::where('wedding_event_id', $weddingEvent)->get();
-        $successful= 0; $failed = 0;
-        foreach ($guests as $guest){
-            if(!empty($guest->phone)){
-                $eBulkSMS = new SendSMS();
-                $res = $eBulkSMS->sendSMS('Michelle-DAVID-2021', $this->getTextMessage($guest), $guest->phone);
-                if($res){
-                    $successful++;
-                }else{
-                    $failed++;
+    public function sendAllPasscodeBySMS(Request $request, $weddingEvent){
+        try {
+            $guests = InvitedGuest::where('wedding_event_id', $weddingEvent)->get();
+            $successful = 0;
+            $failed = 0;
+            foreach ($guests as $guest) {
+                if (!empty($guest->phone)) {
+                    $eBulkSMS = new SendSMS();
+                    $res = $eBulkSMS->sendSMS('M & D-2021', $this->getTextMessage($guest), $guest->phone);
+                    if ($res) {
+                        $successful++;
+                    } else {
+                        $failed++;
+                    }
                 }
             }
+            return back()->with(['message' => "{$successful} SMS sent successfully and {$failed} failed."]);
+        } catch (\Exception $e) {
+            return back()->with(['message' => $e->getMessage()]);
         }
-        return back()->with(['message' => "{$successful} SMS sent successfully and {$failed} failed."]);
     }
     public function  sendPasscodeBySMS($id){
 
